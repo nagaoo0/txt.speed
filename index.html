@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <title>txt.speed - Speed Reading App for EPUB and TXT Books</title>
+    <meta name="description" content="Experience lightning-fast reading with txt.speed! Load EPUB or TXT books and read at adjustable speeds with our innovative speed reading technique. Features adaptive timing, chapter navigation, and mobile support." />
+    <meta name="keywords" content="speed reading, epub reader, txt reader, fast reading, book reader, reading app, epubjs, adaptive speed, words per minute, wpm, mobile reading" />
+    <meta name="author" content="txt.speed Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="theme-color" content="#0f0f0f" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://txtspeed.com/" />
+    <meta property="og:title" content="txt.speed - Speed Reading App" />
+    <meta property="og:description" content="Read books at incredible speeds with our advanced speed reading technique. Supports EPUB and TXT files with adaptive timing." />
+    <meta property="og:image" content="https://txtspeed.com/og-image.jpg" />
+    <meta property="og:site_name" content="txt.speed" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://txtspeed.com/" />
+    <meta property="twitter:title" content="txt.speed - Speed Reading App" />
+    <meta property="twitter:description" content="Read books at incredible speeds with our advanced speed reading technique. Supports EPUB and TXT files with adaptive timing." />
+    <meta property="twitter:image" content="https://txtspeed.com/twitter-image.jpg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://txtspeed.com/" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="application-name" content="txt.speed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="txt.speed" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#0f0f0f" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>txt.speed</h1>
+    </div>
+    <div id="sidebar">
+      <p>Select an EPUB file to begin.</p>
+      <input type="file" id="epubFile" accept=".epub,.txt" />
+    </div>
+    <div id="wordDisplay"></div>
+    <div id="bottomPanel"></div>
+    <div id="bottomBar">
+      <label for="chapterSelect">Chapter:</label>
+      <select id="chapterSelect"></select>
+      <label for="wpm">Words per minute:</label>
+      <input type="number" id="wpm" value="300" min="100" max="1000" />
+      <label for="adaptiveToggle">Adaptive Speed</label>
+      <input type="checkbox" id="adaptiveToggle">
+      <button id="startStop">Start</button>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
