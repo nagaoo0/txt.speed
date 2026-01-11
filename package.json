@@ -1,13 +1,29 @@
 {
-  "name": "booktok",
+  "name": "txt.speed",
+  "version": "1.0.0",
+  "description": "A modern speed reading web application for EPUB and TXT books with adaptive timing and mobile support",
+  "author": "Mihajlo Ciric <mihajlo@mihajlociric.com>",
+  "homepage": "https://txt.mihajlociric.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nagaoo0/txt.speed.git"
+  },
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
+  "keywords": [
+    "speed-reading",
+    "epub",
+    "txt",
+    "reading",
+    "web-app",
+    "productivity"
+  ],
   "devDependencies": {
     "vite": "^7.2.4"
   },

@@ -1,44 +1,21 @@
-# EPUB Speed Reader
+# txt.speed
 
-A web application for speed reading EPUB and TXT books with a focus on one word at a time, highlighting the middle letter in red.
+Speed reading app for EPUB and TXT files.
 
 ## Features
 
-- Load EPUB or TXT files
-- Display one word at a time in the center of the screen with the middle letter highlighted in red
-- Adjustable words per minute (WPM) speed
-- Start/Stop controls
-- Chapter selection for EPUB files
-- Sidebar showing context around the current word
-- Mouse wheel navigation (scroll up/down to move forward/backward)
-- Hold spacebar to pause, release to resume
+- Load EPUB/TXT files
+- Read one word at a time
+- Adjustable speed
+- Mobile support
 
 ## Usage
 
-1. Open the app in your browser (run `npm run dev` and visit http://localhost:5173)
-2. Click "Choose File" to select an EPUB or TXT file
-3. Select a chapter (for EPUB)
-4. Set your desired WPM (default 300)
-5. Click "Start" to begin speed reading
-6. Use mouse wheel to manually navigate words
-7. Hold spacebar to pause, release to resume
-8. Click "Stop" to pause
+npm install
+npm run dev
 
-## Controls
+Visit localhost:5173
 
-- **Start/Stop Button**: Toggle automatic reading
-- **WPM Input**: Adjust reading speed
-- **Chapter Select**: Jump to different chapters (EPUB only)
-- **Mouse Wheel**: Manual word navigation
-- **Spacebar**: Pause/Resume
+## Author
 
-## Development
-
-- Install dependencies: `npm install`
-- Start dev server: `npm run dev`
-- Build for production: `npm run build`
-
-## Dependencies
-
-- Vite
-- epubjs
+Mihajlo Ciric
