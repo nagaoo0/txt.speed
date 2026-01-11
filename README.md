@@ -11,7 +11,7 @@ A web application for speed reading EPUB and TXT books with a focus on one word 
 - Chapter selection for EPUB files
 - Sidebar showing context around the current word
 - Mouse wheel navigation (scroll up/down to move forward/backward)
-- Spacebar to pause/resume
+- Hold spacebar to pause, release to resume
 
 ## Usage
 
@@ -21,7 +21,7 @@ A web application for speed reading EPUB and TXT books with a focus on one word 
 4. Set your desired WPM (default 300)
 5. Click "Start" to begin speed reading
 6. Use mouse wheel to manually navigate words
-7. Press spacebar to pause/resume
+7. Hold spacebar to pause, release to resume
 8. Click "Stop" to pause
 
 ## Controls

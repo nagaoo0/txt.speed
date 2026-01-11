@@ -12,6 +12,7 @@ let startTime;
 let wpm = 300;
 let adaptiveSpeed = false;
 let avgLen = 5;
+let pausedBySpace = false;
 const wordsPerPage = 300;
 const shortPause = 33; // ms for , ; : " ! ?
 const longPause = 66; // ms for .
@@ -224,6 +225,7 @@ function stop() {
 startStopBtn.addEventListener('click', () => {
   if (intervalId || timeoutId) {
     stop();
+    pausedBySpace = false;
   } else {
     start();
   }
@@ -258,14 +260,23 @@ window.addEventListener('wheel', (e) => {
   displayWord();
 });
 
-// Space to pause
+// Space to pause/resume
 window.addEventListener('keydown', (e) => {
   if (e.code === 'Space') {
     e.preventDefault();
-    if (intervalId) {
+    if (intervalId || timeoutId) {
       stop();
-    } else {
+      pausedBySpace = true;
+    }
+  }
+});
+
+window.addEventListener('keyup', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    if (pausedBySpace && !intervalId && !timeoutId) {
       start();
+      pausedBySpace = false;
     }
   }
 });
