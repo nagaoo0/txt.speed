@@ -34,7 +34,7 @@ wpmInput.value = wpm;
 adaptiveToggle.checked = adaptiveSpeed;
 
 if (isMobile) {
-  const initialContent = '<p>Select an EPUB file to begin.</p>';
+  const initialContent = '<p>Select an EPUB or TXT file to begin.</p>';
   sidebar.innerHTML = '';
   bottomPanel.innerHTML = initialContent;
   bottomPanel.appendChild(fileInput);
@@ -48,11 +48,26 @@ fileInput.addEventListener('change', async (e) => {
     chapters = [];
     chapterSelect.innerHTML = '';
 
-    if (file.type === 'text/plain') {
+    const isTxt = !file.name.toLowerCase().endsWith('.epub') && 
+                   (file.type === 'text/plain' || 
+                    file.name.toLowerCase().endsWith('.txt') || 
+                    file.type === 'text/plain;charset=utf-8' ||
+                    file.type === '' ||
+                    file.type.startsWith('text/'));
+    
+    if (isTxt) {
       // Handle TXT
       const text = await file.text();
-      const chapterWords = text.split(/\s+/).filter(w => w.length > 0);
-      chapters.push(chapterWords);
+      
+      // Simple word splitting
+      const wordsArray = text.trim().split(/\s+/).filter(word => word.trim().length > 0);
+      
+      if (wordsArray.length === 0) {
+        alert('No words found in the TXT file. Please check the file content.');
+        return;
+      }
+      
+      chapters.push(wordsArray);
       chapterSelect.innerHTML = '<option value="0">Chapter 1</option>';
     } else {
       // Handle EPUB
@@ -86,7 +101,7 @@ fileInput.addEventListener('change', async (e) => {
     startStopBtn.disabled = false;
   } catch (error) {
     console.error('Error loading file:', error);
-    alert('Error loading file');
+    alert('Error loading file: ' + error.message);
   }
 });
 

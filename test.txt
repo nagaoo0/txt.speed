@@ -1,0 +1,1 @@
+This is a test text file for the speed reading application. It contains some sample text to verify that TXT file processing works correctly. The application should be able to read this file and display the words one at a time for speed reading.
