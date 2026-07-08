@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="icon" type="image/png" href="/img/fav.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <!-- SEO Meta Tags -->
     <title>txt.speed - Speed Reading App for EPUB and TXT Books</title>
     <meta name="description" content="lightning-fast reading with txt.speed! Load EPUB or TXT books and read at adjustable speeds with our innovative speed reading technique. Features adaptive timing, chapter navigation, and mobile support." />
@@ -14,8 +14,8 @@
     <meta name="author" content="Mihajlo Ciric" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
-    <meta name="theme-color" content="#0f0f0f" />
-    
+    <meta name="theme-color" content="#0a0a0a" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://txt.mihajlociric.com/" />
@@ -23,24 +23,21 @@
     <meta property="og:description" content="Read books at incredible speeds. Supports EPUB and TXT files with adaptive timing." />
     <meta property="og:image" content="https://txt.mihajlociric.com/og-image.jpg" />
     <meta property="og:site_name" content="txt.speed" />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://txt.mihajlociric.com/" />
     <meta property="twitter:title" content="txt.speed - Speed Reading App" />
     <meta property="twitter:description" content="Read books at incredible speeds with our advanced speed reading technique. Supports EPUB and TXT files with adaptive timing." />
     <meta property="twitter:image" content="https://txt.mihajlociric.com/twitter-image.jpg" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://txt.mihajlociric.com/" />
-    
+
     <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="/img/fav.png" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/img/fav.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    
+
     <!-- Additional Meta Tags -->
     <meta name="application-name" content="txt.speed" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -48,31 +45,199 @@
     <meta name="apple-mobile-web-app-title" content="txt.speed" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="msapplication-TileColor" content="#0f0f0f" />
+    <meta name="msapplication-TileColor" content="#0a0a0a" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
   </head>
-  <body>
-    <div id="header">
-      <h1>txt.speed</h1>
+  <body data-skin="monolith" data-theme="dark">
+    <input type="file" id="fileInput" accept=".txt,.epub" hidden />
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-name">txt<span class="brand-dot">.</span>speed</div>
+        <div class="brand-tag">reader</div>
+      </div>
+      <div class="topbar-actions">
+        <select id="chapterSelect" class="chapter-select" hidden></select>
+        <div class="skin-switch">
+          <button type="button" data-skin-btn="monolith">Monolith</button>
+          <button type="button" data-skin-btn="console">Console</button>
+          <button type="button" data-skin-btn="deck">Deck</button>
+        </div>
+        <button type="button" id="themeToggle" class="theme-toggle" title="Toggle light / dark"><span class="theme-knob"></span></button>
+        <button type="button" id="settingsBtn" class="icon-btn" title="Settings" aria-label="Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+        <button type="button" id="openBookBtn" class="open-btn">Open book</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="progress-top"><div class="progress-top-fill" id="progressTopFill"></div></div>
+
+      <div class="layout">
+        <section class="stage-col">
+          <div class="stage" id="stage">
+            <div class="word-wrap word-text" id="wordWrap">
+              <span id="wordPre"></span><span class="orp" id="wordOrp"></span><span id="wordPost"></span>
+            </div>
+            <div class="word-measure word-text" aria-hidden="true"><span id="measurePre"></span><span id="measureOrp"></span></div>
+            <div class="next-preview" id="nextPreview"></div>
+            <div class="finished" id="finishedScreen" hidden>
+              <div class="finished-title">Finished</div>
+              <div class="finished-sub">read in <span id="finishedTime">0m</span></div>
+              <button type="button" class="accent-btn" id="restartBtn">Read again</button>
+            </div>
+            <div class="empty-state" id="emptyState" hidden>Open a .txt or .epub file to begin.</div>
+          </div>
+
+          <div class="scrub" id="scrub"><div class="scrub-fill" id="scrubFill"></div></div>
+
+          <div class="context-card">
+            <div class="mono-label" id="deckBookTitle"></div>
+            <div class="context-words" id="contextDeck"></div>
+          </div>
+
+          <div class="controls">
+            <button type="button" class="play-btn js-play" id="playBtn">
+              <span class="play-icon"></span>
+              <span class="pause-icon"><i></i><i></i></span>
+              <span class="play-label js-play-label">Play</span>
+            </button>
+            <div class="wpm-group">
+              <button type="button" class="round-btn js-wpm-dec">&minus;</button>
+              <div class="wpm-value"><span class="js-wpm">300</span><span class="wpm-suffix"> wpm</span></div>
+              <button type="button" class="round-btn js-wpm-inc">+</button>
+            </div>
+            <span class="pill-divider d1"></span>
+            <button type="button" class="adaptive-btn js-adaptive" title="Adaptive speed">
+              <span class="switch"><span class="switch-knob"></span></span>
+              <span class="adaptive-label">adaptive</span>
+            </button>
+            <span class="pill-divider d2"></span>
+            <div class="eta-chip">eta <span class="js-eta">&ndash;</span></div>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <div class="panel-head">
+            <div class="mono-label">Now reading</div>
+            <div class="book-title" id="bookTitle"></div>
+          </div>
+          <div class="chapter-list" id="chapterList" hidden></div>
+          <div class="panel-context">
+            <div class="mono-label">Context</div>
+            <div class="context-words" id="contextConsole"></div>
+          </div>
+          <div class="panel-stats">
+            <div class="stat"><div class="stat-value" id="statPct">0%</div><div class="stat-label">complete</div></div>
+            <div class="stat"><div class="stat-value js-eta">&ndash;</div><div class="stat-label">remaining</div></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="deck-rail">
+        <div class="rail-card">
+          <div class="mono-label">wpm</div>
+          <div class="rail-row">
+            <button type="button" class="round-btn js-wpm-dec">&minus;</button>
+            <div class="rail-value js-wpm">300</div>
+            <button type="button" class="round-btn js-wpm-inc">+</button>
+          </div>
+        </div>
+        <button type="button" class="rail-card rail-adaptive js-adaptive" title="Adaptive speed">
+          <div class="mono-label">adaptive</div>
+          <span class="switch"><span class="switch-knob"></span></span>
+        </button>
+        <div class="rail-card">
+          <div class="mono-label">eta</div>
+          <div class="rail-value js-eta">&ndash;</div>
+        </div>
+        <button type="button" class="rail-play accent-btn js-play"><span class="js-play-label">Play</span></button>
+      </div>
+    </main>
+
+    <div class="settings-overlay" id="settingsOverlay" hidden>
+      <div class="settings-page">
+        <div class="settings-head">
+          <div>
+            <div class="settings-title">Settings</div>
+            <div class="settings-sub">customize every theme</div>
+          </div>
+          <button type="button" class="icon-btn" id="settingsClose" title="Close" aria-label="Close settings">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <section class="settings-section">
+          <div class="mono-label">Appearance</div>
+          <div class="setting-row">
+            <div class="setting-name">Mode<span class="setting-hint">applies to all themes</span></div>
+            <div class="segmented" id="modeSeg">
+              <button type="button" data-mode="dark">Dark</button>
+              <button type="button" data-mode="light">Light</button>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Word font</div>
+            <select id="setWordFont" class="settings-select">
+              <option value="inter">Inter</option>
+              <option value="mono">JetBrains Mono</option>
+              <option value="serif">Georgia</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Word size <span class="mono-val" id="wordScaleVal">100%</span></div>
+            <input type="range" id="setWordScale" min="70" max="140" step="5" />
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="mono-label">Theme accents</div>
+          <div class="setting-row hue-row" data-hue-skin="monolith">
+            <div class="setting-name">Monolith <span class="swatch"></span></div>
+            <div class="hue-wrap"><input type="range" class="hue-slider" min="0" max="360" step="1" /><span class="mono-val hue-val">48&deg;</span></div>
+          </div>
+          <div class="setting-row hue-row" data-hue-skin="console">
+            <div class="setting-name">Console <span class="swatch"></span></div>
+            <div class="hue-wrap"><input type="range" class="hue-slider" min="0" max="360" step="1" /><span class="mono-val hue-val">155&deg;</span></div>
+          </div>
+          <div class="setting-row hue-row" data-hue-skin="deck">
+            <div class="setting-name">Deck <span class="swatch"></span></div>
+            <div class="hue-wrap"><input type="range" class="hue-slider" min="0" max="360" step="1" /><span class="mono-val hue-val">255&deg;</span></div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Accent intensity <span class="mono-val" id="chromaVal">19</span></div>
+            <input type="range" id="setChroma" min="5" max="30" step="1" />
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="mono-label">Reading</div>
+          <div class="setting-row">
+            <div class="setting-name">WPM step</div>
+            <div class="segmented" id="stepSeg">
+              <button type="button" data-step="10">10</button>
+              <button type="button" data-step="25">25</button>
+              <button type="button" data-step="50">50</button>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Comma pause<span class="setting-hint">extra ms on , ; : ! ? in adaptive mode</span></div>
+            <input type="number" id="setShortPause" class="settings-num" min="0" max="500" step="1" />
+          </div>
+          <div class="setting-row">
+            <div class="setting-name">Period pause<span class="setting-hint">extra ms on . in adaptive mode</span></div>
+            <input type="number" id="setLongPause" class="settings-num" min="0" max="500" step="1" />
+          </div>
+        </section>
+
+        <div class="settings-foot">
+          <button type="button" class="reset-btn" id="resetSettings">Reset to defaults</button>
+          <div class="credit">made by <a href="https://linktr.ee/mihajlociric" target="_blank" rel="noopener">Mihajlo Ciric</a></div>
+        </div>
+      </div>
     </div>
-    <div id="sidebar">
-      <p>Select an EPUB or TXT file to begin.</p>
-      <input type="file" id="epubFile" />
-    </div>
-    <div id="wordDisplay"></div>
-    <div id="bottomPanel"></div>
-    <div id="bottomBar">
-      <label for="chapterSelect">Chapter:</label>
-      <select id="chapterSelect"></select>
-      <label for="wpm">Words per minute:</label>
-      <input type="number" id="wpm" value="300" min="100" max="1000" />
-      <label for="adaptiveToggle">Adaptive Speed</label>
-      <input type="checkbox" id="adaptiveToggle">
-      <button id="startStop">Start</button>
-    </div>
-    <footer style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
-      made by <a href="https://linktr.ee/mihajlociric" target="_blank" style="color: #666; text-decoration: none;">Mihajlo Ciric</a>
-    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
